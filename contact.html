@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .container {
+            margin-top: 50px;
+          display: flex;
+          justify-content:center;
+          align-items: center;
+
+        }
+      
+        .box {
+          width: 300px;
+          height: 300px;
+          perspective: 1000px;
+          position: relative;
+          cursor: pointer;
+          margin-left:100px;
+        }
+      
+        .box-inner {
+          width: 100%;
+          height: 100%;
+          transition: transform 0.6s;
+          transform-style: preserve-3d;
+        }
+      
+        .box:hover .box-inner {
+          transform: rotateY(180deg);
+        }
+      
+        .box-front,
+        .box-back {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          backface-visibility: hidden;
+        }
+      
+        .box-front {
+          background: #ddd;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+        }
+      
+        .box-back {
+          background: #ccc;
+          transform: rotateY(180deg);
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          background-color: aliceblue;
+          font-family: "Montserrat", sans-serif;
+        }
+      
+        .box img {
+          max-width: 100%;
+          max-height: 100%;
+        }
+         h1{
+            text-align: center;
+            font-size: 50px;
+            margin-top: 100px;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color:green;
+            font-weight: 600;
+         }
+         h2{
+            text-align: center;
+            font-weight: 300;
+         }
+      </style>
+</head>
+<body>
+        <h1>Project Members</h1>
+
+    <div class="container">
+        <div class="box">
+          <div class="box-inner">
+            <div class="box-front">
+              <img src="download.jpg" alt="Front Image 1">
+            </div>
+            <div class="box-back">
+                <br><br>
+                <h2>Syed Nabeel Uddin</h2>
+              <p>Age: 22</p>
+              <p>Role: Front-End | Back-End</p>
+              <p>03308734629</p>
+              <p>occupation: Student</p>
+            </div>
+          </div>
+        </div>
+      
+        <div class="box">
+          <div class="box-inner">
+            <div class="box-front">
+              <img src="download.jpg" alt="Front Image 2">
+            </div>
+            <div class="box-back">
+                <br><br>
+              <h2>Shaikh Azan Asim</h2>
+              <p>Age: 21</p>
+              <p>Role: Databse | Back-End</p>
+              <p>033043663986</p>
+              <p>occupation: Student</p>
+            </div>
+          </div>
+        </div>
+      
+        <div class="box">
+          <div class="box-inner">
+            <div class="box-front">
+              <img src="download.jpg" alt="Front Image 3">
+            </div>
+            <div class="box-back">
+                <br><br>
+              <h2>Goutam Kumar Chawla</h2>
+              <p>Age: 21</p>
+              <p>Role: Front-End | Back-End</p>
+              <p>03360249070</p>
+              <p>occupation: Student</p>
+            </div>
+          </div>
+        </div>
+      </div>
+</body>
+</html>

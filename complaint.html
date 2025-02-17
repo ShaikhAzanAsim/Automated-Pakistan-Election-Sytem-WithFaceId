@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMPLAINT</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="headerimage.png" alt="Logo">
+        </div> 
+    </header>
+    <nav>
+        <ul class="nav_links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="tutorial.html">Tutorial</a></li>
+            <li><a href="complaint.html">Complaint</a></li>
+            <li><a href="result_live.html">Live Result</a></li> 
+        </ul>
+        <a class="cta" href="contact.html"><button>Contact US</button></a>
+    </nav>
+    
+    <!-- NEWS TICKER -->
+    <div class="hwrap">
+        <div class="hmove">
+            <div class="hitem">Elections will commence on 29th june, please stay active to recieve any new update.</div>
+            <div class="hitem">to check your eligibility click on the eligibility button on the navigational bar on top.</div>
+        </div>
+    </div>
+    
+    <div class="complaint-box">
+        <h2>Submit a Complaint</h2>
+        <form action="#" method="POST" id="complaintForm">
+            <div class="form-group">
+                <label for="cnic">CNIC:</label>
+                <input type="text" id="cnic" name="cnic" required>
+            </div>
+            <div class="form-group">
+                <label for="reason">Reason for Complaint:</label>
+                <select id="reason" name="reason" required>
+                    <option value="" disabled selected>Select a reason</option>
+                    <option value="network_error">Network Error</option>
+                    <option value="login_issue">Login Issue</option>
+                    <option value="voting_machine_problem">Voting Machine Problem</option>
+                    <option value="security_concern">Security Concern</option>
+                    <!-- Add more options as needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="details">Detailed Complaint:</label>
+                <textarea id="details" name="details" rows="4" required></textarea>
+            </div>
+            <div class="submit">
+                <button type="submit">Submit Complaint</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("complaintForm").addEventListener("submit", function(event) {
+            // Prevent the default form submission
+            event.preventDefault();
+            
+            // Show an alert message
+            alert("Your complaint has been recorded. Thank you for your feedback!");
+            
+            // Optionally, you can submit the form data to a server using AJAX here
+            
+            // Reset the form fields
+            this.reset();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assembly Buttons</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-image: url('votechoose_back.png'); /* Add your background image URL here */
+    background-size: cover; /* Ensure the background image covers the entire viewport */
+    position: relative; /* Ensure correct positioning of news strip */
+  }
+
+  /* NEWS STRIP */
+  .news-strip {
+    background-color: yellow;
+    color: black;
+    padding: 20px; /* Increase padding for a bigger strip */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: right; /* Align text to the right */
+    font-size: 24px; /* Increase font size */
+    font-weight: bold; /* Make text bold */
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide overflow text */
+  }
+
+.hmove { display: flex; }
+.hitem { width: 100%; flex-shrink: 0; font-size: 30px;  }
+.hwrap { overflow: hidden; background-color: yellow;}
+ 
+/* (B) MOVE ITEMS FROM RIGHT TO LEFT */
+/* first item = 0, fourth item = -300% */
+@keyframes tickerh {
+  0% { transform: translatex(100%); }
+  100% { transform: translatex(-300%); }
+}
+.hmove { animation: tickerh linear 25s infinite; }
+.hmove:hover { animation-play-state: paused; }
+
+  /* Assembly buttons container */
+  .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    margin-top: 50px; /* Adjust margin from the news strip */
+  }
+
+  /* Assembly buttons */
+  .button {
+    display: inline-block;
+    width: 400px; /* Adjust width as needed */
+    height: 400px; /* Adjust height as needed */
+    font-size: 30px;
+    font-weight: bold; /* Make text bold */
+    border: 2px solid green; /* Border color for the buttons */
+    border-radius: 20px; /* Set border-radius for rounded corners */
+    cursor: pointer;
+    color: rgb(255, 255, 255); /* Text color */
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.3s, font-size 0.3s;
+    margin: 0 50px; /* Adjust margin to separate buttons */
+    position: relative; /* Allows absolute positioning of the text */
+    overflow: hidden; /* Ensures text does not overflow outside button */
+  }
+
+  .button img {
+    width: 100%; /* Ensures image fills the button */
+    height: 100%; /* Maintains aspect ratio of image */
+    opacity: 0.8; /* Adjust opacity as needed */
+  }
+
+  .button span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1; /* Ensure text is above the image */
+    transition: font-size 0.3s; /* Text size transition */
+  }
+
+  .button:hover {
+    transform: scale(1.1);
+  }
+
+  .button:hover span {
+    font-size: 38px; /* Increase text size on hover */
+    background-color: green; /* Highlight color */
+    padding: 10px 20px; /* Increase padding to highlight text */
+    border-radius: 10px;
+  }
+  .button:hover img {
+    opacity: 0.9;
+  }
+
+  /* Styles for bottom left button */
+  .bottom-left-button {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 300px; /* Adjust width as needed */
+    height: 50px; /* Adjust height as needed */
+    padding: 10px 20px; /* Adjust padding as needed */
+    font-size: 35px; /* Adjust font size as needed */
+    background-color: green;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center; /* Center text */
+    font-weight: bold; /* Make text bold */
+  }
+
+  .bottom-left-button:hover {
+    background-color: rgb(6, 77, 6);
+  }
+  .h1{
+    background-color: black;
+    color: #ffffff;
+
+  }
+</style>
+</head>
+<body>
+
+<?php
+include 'connection.php';
+  // Read 15 characters from a text file and store them in a variable called cnic_check
+  $cnic_check_file = 'last_predicted_cnic.txt'; // Replace with the path to your text file
+  $cnic_check = substr(file_get_contents($cnic_check_file), 0, 15);
+
+  if($cnic_check==NULL)
+  {?>
+    <h1><mark>YOU NEED TO LOGIN TO MOVE FURTHER. CLICK <a href="login.html">HERE</a> TO GO FURTHER</mark>></h1>
+<?php
+  }
+  else
+  {
+    $sql_v = "SELECT vote1,vote2 FROM `user` WHERE CNIC = '$cnic_check' ;";
+    $result_V = mysqli_query($conn,$sql_v);
+    $row_V = mysqli_fetch_assoc($result_V);
+    $vote1=$row_V["vote1"];
+    $vote2=$row_V["vote2"];
+  
+    if($vote1==NULL && $vote2 != NULL){?>
+     <div class="news-strip">
+      <div class="hmove">
+          <div class="hitem">CLICK ON THE BUTTON TO VOTE FOR PROVINCIAL ASSEMBLY.</div>
+          <div class="hitem">CLICK ON THE TUTORIAL BUTTON ON THE BOTTOM LEFT TO LEARN HOW TO VOTE.</div>
+  
+          <div class="hitem">CLICK ON THE BUTTON TO VOTE FOR PROVINCIAL ASSEMBLY.</div>
+          <div class="hitem">CLICK ON THE TUTORIAL BUTTON ON THE BOTTOM LEFT TO LEARN HOW TO VOTE.</div>
+  
+      </div>
+      <!-- <span><marquee behavior="scroll" direction="left" scrollamount="5" style="animation-duration: 25s;">THE LEFT BUTTON IS TO PROCEED VOTING FOR PROVINCIAL ASSEMBLY WHILE THE RIGHT BUTTON IS FOR NATIONAL ASSEMBLY. CLICK ON THE TUTORIAL BUTTON ON THE BOTTOM LEFT TO LEARN HOW TO VOTE</marquee></span> -->
+    </div>
+  
+    <div class="button-container">
+      <a href="vote_PA.php" class="button">
+        <img src="provisional_image.png" alt="Provisional Assembly Image">
+        <span>Provisional Assembly</span>
+      </a>
+    </div>
+  
+    <a href="tutorial.html" class="bottom-left-button">Tutorial</a>
+        <?php
+    }elseif($vote2==NULL && $vote1 != NULL){?>
+  
+    <div class="news-strip">
+      <div class="hmove">
+          <div class="hitem">CLICK ON THE BUTTON TO VOTE FOR NATIONAL ASSEMBLY.</div>
+          <div class="hitem">CLICK ON THE TUTORIAL BUTTON ON THE BOTTOM LEFT TO LEARN HOW TO VOTE.</div>
+  
+          <div class="hitem">CLICK ON THE BUTTON TO VOTE FOR NATIONAL ASSEMBLY.</div>
+          <div class="hitem">CLICK ON THE TUTORIAL BUTTON ON THE BOTTOM LEFT TO LEARN HOW TO VOTE.</div>
+  
+      </div>
+      <!-- <span><marquee behavior="scroll" direction="left" scrollamount="5" style="animation-duration: 25s;">THE LEFT BUTTON IS TO PROCEED VOTING FOR PROVINCIAL ASSEMBLY WHILE THE RIGHT BUTTON IS FOR NATIONAL ASSEMBLY. CLICK ON THE TUTORIAL BUTTON ON THE BOTTOM LEFT TO LEARN HOW TO VOTE</marquee></span> -->
+    </div>
+  
+    <div class="button-container">
+      <a href="vote_NA.php" class="button">
+        <img src="national_image.jpeg" alt="National Assembly Image">
+        <span>National  Assembly</span>
+      </a>
+    </div>
+  
+    <a href="tutorial.html" class="bottom-left-button">Tutorial</a>
+        
+        <?php
+    }
+    elseif($vote1==NULL && $vote2== NULL){?>
+  
+    <div class="news-strip">
+      <div class="hmove">
+          <div class="hitem">THE LEFT BUTTON IS TO PROCEED VOTING FOR PROVINCIAL ASSEMBLY WHILE THE RIGHT BUTTON IS FOR NATIONAL ASSEMBLY.</div>
+          <div class="hitem">CLICK ON THE TUTORIAL BUTTON ON THE BOTTOM LEFT TO LEARN HOW TO VOTE.</div>
+  
+          <div class="hitem">THE LEFT BUTTON IS TO PROCEED VOTING FOR PROVINCIAL ASSEMBLY WHILE THE RIGHT BUTTON IS FOR NATIONAL ASSEMBLY.</div>
+          <div class="hitem">CLICK ON THE TUTORIAL BUTTON ON THE BOTTOM LEFT TO LEARN HOW TO VOTE.</div>
+  
+      </div>
+      <!-- <span><marquee behavior="scroll" direction="left" scrollamount="5" style="animation-duration: 25s;">THE LEFT BUTTON IS TO PROCEED VOTING FOR PROVINCIAL ASSEMBLY WHILE THE RIGHT BUTTON IS FOR NATIONAL ASSEMBLY. CLICK ON THE TUTORIAL BUTTON ON THE BOTTOM LEFT TO LEARN HOW TO VOTE</marquee></span> -->
+    </div>
+  
+    <div class="button-container">
+      <a href="vote_PA.php" class="button">
+        <img src="provisional_image.png" alt="Provisional Assembly Image">
+        <span>Provisional Assembly</span>
+      </a>
+      <a href="vote_NA.php" class="button">
+        <img src="national_image.jpeg" alt="National Assembly Image">
+        <span>National  Assembly</span>
+      </a>
+    </div>
+  
+    <a href="tutorial.html" class="bottom-left-button">Tutorial</a>
+    
+  
+  <?php
+    }else{
+      ?>
+  <h1><mark>THANK YOU FOR VOTING, BUT YOU SHOULD NOT BE HERE. CLICK <a href="index_1.html">HERE</a> TO GO FURTHER</mark>></h1>
+  
+  <?php
+    }
+    ?>
+  
+  <?php
+  }
+  ?>
+  
+  
+</body>
+</html>

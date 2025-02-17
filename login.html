@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="login_style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="headerimage.png" alt="Logo">
+        </div> 
+        
+    </header>
+    <div id="bg-video-container">
+        <video autoplay muted loop id="bg-video">
+         <source src="4498111-hd_1280_720_30fps.mp4" type="video/mp4">
+         Your browser does not support the video tag.
+        </video>
+    </div>
+ <div class="container">
+    <h2>Login</h2>
+    <form action="login_process.php" method="POST">
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="cnic">CNIC:</label><br>
+        <input type="text" id="cnic" name="cnic" pattern="[0-9]{5}-[0-9]{7}-[0-9]{1}" title="Please enter CNIC in the format 12345-1234567-1" required><br><br>
+        <label for="password">Password:</label><br>
+
+        <input type="password" id="password" name="password" required><br><br>
+
+        <button type="submit">Login</button>
+    </form>
+    <p>Click on the bottom right button to begin facial detection.</p>
+    <p>If you're new, <a href="register.php">click here to register</a>.</p>
+  </div>
+  <button id="runScriptBtn">
+    <img src="face1.png" alt="Button Image">
+  </button>
+
+    <div id="output"></div>
+
+    <script>
+        $(document).ready(function(){
+            $("#runScriptBtn").click(function(){
+                alert("Facial detection has started. Please wait until the light near the camera turns on, this may take few minutes...");
+                $.ajax({
+                    url: "run_script.php",
+                    type: "POST",
+                    success: function(response) {
+                        $("#output").html(response);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

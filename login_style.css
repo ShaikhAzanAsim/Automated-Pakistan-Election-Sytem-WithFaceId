@@ -1,0 +1,158 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.logo {
+    margin-right: auto; /* Pushes the logo to the left */
+}
+
+.logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+header{
+    
+    display:flex;
+    align-items: center;
+    padding: 10px 5%;
+    object-fit: cover;
+}
+
+#bg-video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the video covers the entire container */
+}
+.container {
+    position: relative;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.8); /* Added semi-transparent background to the container */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    margin: auto;
+    margin-top: 50px; /* Adjust as needed */
+}
+
+h2 {
+    color: #333;
+    margin-top: 0;
+}
+
+label {
+    font-weight: bold;
+}
+
+
+input[type="email"],
+input[type="text"],
+input[type="password"],
+input[type="submit"],
+input[type="first_name"],
+input[type="last_name"],
+input[type="cnic"],
+input[type="address"],
+input[type="select"]{
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.select-box {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    /* Optionally, you can apply additional styles to make the select box visually similar to input fields */
+    background-color: #fff;
+    color: #333;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Added transition effect */
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+button[type="submit"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-sizing: border-box;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+p {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+#output {
+    opacity: 0;
+}
+
+#runScriptBtn {
+    position: fixed;
+    bottom: 20px; /* Adjust this value to change the distance from the bottom */
+    right: 20px; /* Adjust this value to change the distance from the right */
+    width: 150px; /* Adjust the width of the button */
+    height: 150px; /* Ensure the button is square */
+    border: none; /* Remove default button border */
+    background-color: transparent; /* Make background transparent */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: transform 0.2s; /* Smooth transition on hover */
+}
+
+#runScriptBtn:hover {
+    transform: scale(1.1); /* Increase size on hover */
+}
+
+#runScriptBtn img {
+    width: 100%; /* Ensure image fills the button */
+    height: 100%; /* Ensure image fills the button */
+}
